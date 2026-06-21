@@ -1,0 +1,328 @@
+{
+  "info": {
+    "_postman_id": "c0105547-0000-4000-8000-c0105547a001",
+    "name": "Colossyan API",
+    "description": "REST API for the Colossyan AI avatar and video generation platform. Generate videos from a script + avatar + voice via asynchronous jobs, list avatars/presenters and voices, create Instant avatars, generate from templates, and receive completion webhook callbacks. Authentication is a Bearer token from the workspace Settings (Business or Enterprise plan required).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://app.colossyan.com/api/v1"
+    },
+    {
+      "key": "experimentalBaseUrl",
+      "value": "https://app.colossyan.com/api"
+    }
+  ],
+  "item": [
+    {
+      "name": "Video Generation",
+      "item": [
+        {
+          "name": "Create a video-generation job.",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/video-generation-jobs",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "video-generation-jobs"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"videoCreative\": {\n    \"settings\": {\n      \"name\": \"<string>\",\n      \"videoSize\": {\n        \"width\": 1920,\n        \"height\": 1080\n      }\n    },\n    \"scenes\": []\n  },\n  \"dynamicVariables\": {},\n  \"callback\": \"<uri>\",\n  \"callbackPayload\": {}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "Submits an asynchronous job that renders a video from a video creative descriptor (scenes, tracks, avatars, scripts, voices). Optionally supply a callback URL and dynamic variables."
+          },
+          "response": []
+        },
+        {
+          "name": "Get a video-generation job.",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/video-generation-jobs/:videoGenerationJobId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "video-generation-jobs",
+                ":videoGenerationJobId"
+              ],
+              "variable": [
+                {
+                  "key": "videoGenerationJobId",
+                  "value": "",
+                  "description": "The identifier of the video-generation job."
+                }
+              ]
+            },
+            "description": "Retrieves the status and progress of a video-generation job."
+          },
+          "response": []
+        },
+        {
+          "name": "Cancel a video-generation job.",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/video-generation-jobs/:videoGenerationJobId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "video-generation-jobs",
+                ":videoGenerationJobId"
+              ],
+              "variable": [
+                {
+                  "key": "videoGenerationJobId",
+                  "value": "",
+                  "description": "The identifier of the video-generation job."
+                }
+              ]
+            },
+            "description": "Cancels an in-progress video-generation job."
+          },
+          "response": []
+        },
+        {
+          "name": "Create a video-generation job from a template.",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/video-generation-jobs/template-jobs",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "video-generation-jobs",
+                "template-jobs"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"templateId\": \"<string>\",\n  \"dynamicVariables\": {},\n  \"callback\": \"<uri>\",\n  \"callbackPayload\": {}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "Generates a video from an existing Colossyan template, supplying dynamic variables to populate template placeholders."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Generated Videos",
+      "item": [
+        {
+          "name": "Get a generated video.",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/generated-videos/:videoId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "generated-videos",
+                ":videoId"
+              ],
+              "variable": [
+                {
+                  "key": "videoId",
+                  "value": "",
+                  "description": "The identifier of the generated video."
+                }
+              ]
+            },
+            "description": "Retrieves details and download URLs for a generated video."
+          },
+          "response": []
+        },
+        {
+          "name": "Delete a generated video.",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/generated-videos/:videoId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "generated-videos",
+                ":videoId"
+              ],
+              "variable": [
+                {
+                  "key": "videoId",
+                  "value": "",
+                  "description": "The identifier of the generated video."
+                }
+              ]
+            },
+            "description": "Deletes a generated video."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Avatars",
+      "item": [
+        {
+          "name": "List avatars.",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/assets/actors",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "assets",
+                "actors"
+              ]
+            },
+            "description": "Returns the avatars/presenters available to the workspace (Studio, Scenario, and Instant avatar types)."
+          },
+          "response": []
+        },
+        {
+          "name": "Create an Instant avatar.",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/assets/actors",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "assets",
+                "actors"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"displayName\": \"<string>\",\n  \"sourceFileUrl\": \"<uri>\",\n  \"gender\": \"Female\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "Creates a custom Instant avatar from a source image or video URL in a single request."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Voices",
+      "item": [
+        {
+          "name": "List voices.",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/assets/voices",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "assets",
+                "voices"
+              ]
+            },
+            "description": "Returns the AI voices available for narration across the platform's supported languages."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Experimental",
+      "item": [
+        {
+          "name": "Generate a draft from a knowledge source.",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{experimentalBaseUrl}}/knowledge-to-draft/generate-draft",
+              "host": [
+                "{{experimentalBaseUrl}}"
+              ],
+              "path": [
+                "knowledge-to-draft",
+                "generate-draft"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "Experimental endpoint that generates a video draft from a knowledge source. Served from the non-versioned base URL and subject to change."
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

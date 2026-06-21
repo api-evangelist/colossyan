@@ -1,0 +1,214 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Colossyan API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Video Generation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a video-generation job.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.colossyan.com/api/v1/video-generation-jobs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits an asynchronous job that renders a video from a video creative descriptor (scenes, tracks, avatars, scripts, voices). Optionally supply a callback URL and dynamic variables."
+        },
+        {
+          "info": {
+            "name": "Get a video-generation job.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.colossyan.com/api/v1/video-generation-jobs/:videoGenerationJobId",
+            "params": [
+              {
+                "name": "videoGenerationJobId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the video-generation job."
+              }
+            ]
+          },
+          "docs": "Retrieves the status and progress of a video-generation job."
+        },
+        {
+          "info": {
+            "name": "Cancel a video-generation job.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://app.colossyan.com/api/v1/video-generation-jobs/:videoGenerationJobId",
+            "params": [
+              {
+                "name": "videoGenerationJobId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the video-generation job."
+              }
+            ]
+          },
+          "docs": "Cancels an in-progress video-generation job."
+        },
+        {
+          "info": {
+            "name": "Create a video-generation job from a template.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.colossyan.com/api/v1/video-generation-jobs/template-jobs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generates a video from an existing Colossyan template, supplying dynamic variables to populate template placeholders."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Generated Videos",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a generated video.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.colossyan.com/api/v1/generated-videos/:videoId",
+            "params": [
+              {
+                "name": "videoId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the generated video."
+              }
+            ]
+          },
+          "docs": "Retrieves details and download URLs for a generated video."
+        },
+        {
+          "info": {
+            "name": "Delete a generated video.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://app.colossyan.com/api/v1/generated-videos/:videoId",
+            "params": [
+              {
+                "name": "videoId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the generated video."
+              }
+            ]
+          },
+          "docs": "Deletes a generated video."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Avatars",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List avatars.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.colossyan.com/api/v1/assets/actors"
+          },
+          "docs": "Returns the avatars/presenters available to the workspace (Studio, Scenario, and Instant avatar types)."
+        },
+        {
+          "info": {
+            "name": "Create an Instant avatar.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.colossyan.com/api/v1/assets/actors",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a custom Instant avatar from a source image or video URL in a single request."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Voices",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List voices.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.colossyan.com/api/v1/assets/voices"
+          },
+          "docs": "Returns the AI voices available for narration across the platform's supported languages."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Experimental",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate a draft from a knowledge source.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.colossyan.com/api/knowledge-to-draft/generate-draft",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Experimental endpoint that generates a video draft from a knowledge source. Served from the non-versioned base URL and subject to change."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

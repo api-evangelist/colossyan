@@ -1,0 +1,85 @@
+aid: colossyan
+name: Colossyan
+review:
+  question: Does Colossyan expose a documented public WebSocket API?
+  answer: false
+  date: '2026-06-21'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was created. Colossyan's asynchronous surface is a
+    REST job + HTTP webhook callback pattern, not a streaming transport. The
+    client POSTs a video-generation job, polls a GET status endpoint, and
+    optionally receives a one-shot HTTP POST callback (webhook) to a
+    caller-supplied URL on completion. There is no Server-Sent Events stream
+    and no WebSocket surface to model, so no AsyncAPI artifact was warranted.
+findings:
+  summary: |
+    Colossyan does not publish a documented public WebSocket API. The platform
+    exposes a JSON REST API under https://app.colossyan.com/api/v1 (with some
+    experimental endpoints under https://app.colossyan.com/api). Long-running
+    work (video rendering) is handled asynchronously via video-generation
+    jobs: the caller creates a job, retrieves status via a GET endpoint, and
+    can register a callback (webhook) URL that Colossyan POSTs to on
+    completion with the public video URL, status, and any custom callback
+    payload. No realtime, bidirectional, or streaming WebSocket (ws:// or
+    wss://) endpoint and no Server-Sent Events stream are documented.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://app.colossyan.com/api/v1
+      documented: true
+    - protocol: Webhook
+      scheme: https
+      note: One-shot HTTP POST callback to a client-supplied URL on job completion. Not a persistent stream.
+      documented: true
+    - protocol: SSE
+      scheme: https
+      documented: false
+      note: No Server-Sent Events streaming endpoint is documented.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented in Colossyan's API reference as of the review date.
+  endpointsConfirmedRest:
+    - POST   https://app.colossyan.com/api/v1/video-generation-jobs
+    - GET    https://app.colossyan.com/api/v1/video-generation-jobs/{videoGenerationJobId}
+    - DELETE https://app.colossyan.com/api/v1/video-generation-jobs/{videoGenerationJobId}
+    - POST   https://app.colossyan.com/api/v1/video-generation-jobs/template-jobs
+    - GET    https://app.colossyan.com/api/v1/generated-videos/{videoId}
+    - DELETE https://app.colossyan.com/api/v1/generated-videos/{videoId}
+    - GET    https://app.colossyan.com/api/v1/assets/actors
+    - POST   https://app.colossyan.com/api/v1/assets/actors
+    - GET    https://app.colossyan.com/api/v1/assets/voices
+    - POST   https://app.colossyan.com/api/knowledge-to-draft/generate-draft
+  apiAvailability:
+    public: true
+    gated: true
+    note: |
+      A real, documented REST API exists, but access is gated to Business and
+      Enterprise plans (and/or an API minute add-on). The API token is
+      retrieved from the workspace Settings page.
+sources:
+  - url: https://docs.colossyan.com/
+    type: Documentation
+    note: Welcome/overview; confirms JSON REST API and Bearer token auth.
+  - url: https://docs.colossyan.com/basics/video-generation
+    type: Documentation
+    note: Video generation jobs, callback/webhook on completion, dynamic variables.
+  - url: https://docs.colossyan.com/avatar-creation/create-avatar
+    type: Documentation
+    note: Create Instant avatar via POST /assets/actors.
+  - url: https://docs.colossyan.com/basics/openapi/list-avatars
+    type: APIReference
+    note: List avatars via GET /assets/actors; Studio/Scenario/Instant avatar types.
+  - url: https://www.colossyan.com/api
+    type: Marketing
+    note: API product page; states Business/Enterprise plan requirement and use cases.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket or SSE protocol surface exists. The asynchronous pattern is
+    REST job submission plus a one-shot HTTP webhook callback, which is fully
+    represented in the OpenAPI definition (job create/status/cancel endpoints
+    and a documented WebhookCallback schema). No AsyncAPI artifact was needed.

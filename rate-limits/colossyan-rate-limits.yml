@@ -1,0 +1,65 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Colossyan
+providerId: colossyan
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- AI
+- Video Generation
+- Avatars
+- Text to Video
+- Learning and Development
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  Colossyan does not publish explicit per-endpoint request rate limits in its
+  public API documentation. In practice usage is constrained by subscription
+  entitlements - monthly video minutes, number of editor seats, Instant
+  avatars, and (for the API) the Business/Enterprise plan requirement plus any
+  API minute add-on. Video generation is asynchronous (jobs), which naturally
+  bounds concurrent rendering. Specific numeric request limits are not
+  documented and are not reconciled in this artifact.
+notes: >-
+  No documented RPM/RPS values were found on docs.colossyan.com as of the
+  creation date. The effective constraints are plan-based minute and seat
+  quotas. Confirm any per-account or per-key request limits with Colossyan
+  during reconciliation.
+sources:
+- https://docs.colossyan.com/
+- https://www.colossyan.com/api
+- https://www.colossyan.com/pricing
+responseCodes:
+  throttled: 429
+limits:
+- name: Monthly Video Minutes
+  scope: account
+  metric: minutes
+  limit: plan-based
+  notes: Bounded by the subscription tier's monthly minute allotment (NEO 1 / NEO 2).
+- name: API Access Eligibility
+  scope: account
+  metric: entitlement
+  limit: Business or Enterprise plan required
+  notes: API requests are only available on qualifying plans (and/or via an API minute add-on).
+- name: Request Rate Limit
+  scope: account
+  metric: requests
+  limit: see provider documentation
+  notes: No explicit per-minute/per-second request rate limit is published.
+- name: Concurrent Video Generation Jobs
+  scope: account
+  metric: jobs
+  limit: see provider documentation
+  notes: Video generation is asynchronous; concurrency limits are not documented.
+policies:
+- name: Plan-Based Quotas
+  description: Entitlements (minutes, seats, avatars) scale with subscription tier; API requires Business/Enterprise.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on 429 responses.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

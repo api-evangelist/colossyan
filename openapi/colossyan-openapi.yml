@@ -1,0 +1,455 @@
+openapi: 3.0.1
+info:
+  title: Colossyan API
+  description: >-
+    REST API for the Colossyan AI avatar and video generation platform. Generate
+    studio-quality videos from a script combined with AI avatars and voices via
+    asynchronous video-generation jobs, list avatars/presenters and voices,
+    create custom Instant avatars, generate from templates, and receive
+    completion notifications via webhook callbacks. All requests and responses
+    use JSON. API access requires a Business or Enterprise plan; the API token
+    is found in the workspace Settings. Endpoint paths, request fields, and
+    response fields below reflect Colossyan's public documentation
+    (docs.colossyan.com); exact JSON schemas are not fully published, so request
+    and response bodies are described as free-form objects where the schema is
+    not documented.
+  termsOfService: https://www.colossyan.com/terms-and-conditions
+  contact:
+    name: Colossyan Support
+    url: https://www.colossyan.com/contact
+  version: '1.0'
+servers:
+  - url: https://app.colossyan.com/api/v1
+    description: Stable v1 API
+  - url: https://app.colossyan.com/api
+    description: Experimental (non-versioned) endpoints
+security:
+  - bearerAuth: []
+tags:
+  - name: Video Generation
+    description: Create and manage asynchronous video-generation jobs.
+  - name: Generated Videos
+    description: Retrieve and delete completed videos.
+  - name: Avatars
+    description: List avatars/presenters and create custom Instant avatars.
+  - name: Voices
+    description: List available AI voices.
+  - name: Experimental
+    description: Non-versioned, experimental endpoints subject to change.
+paths:
+  /video-generation-jobs:
+    post:
+      operationId: createVideoGenerationJob
+      tags:
+        - Video Generation
+      summary: Create a video-generation job
+      description: >-
+        Submits an asynchronous job that renders a video from a video creative
+        descriptor (scenes, tracks, avatars, scripts, voices). Optionally
+        supply a callback URL to be notified on completion and dynamic
+        variables for substitution.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VideoGenerationJobRequest'
+      responses:
+        '200':
+          description: Job created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VideoGenerationJob'
+  /video-generation-jobs/{videoGenerationJobId}:
+    get:
+      operationId: getVideoGenerationJob
+      tags:
+        - Video Generation
+      summary: Get a video-generation job
+      description: Retrieves the status and progress of a video-generation job.
+      parameters:
+        - $ref: '#/components/parameters/VideoGenerationJobId'
+      responses:
+        '200':
+          description: Job retrieved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VideoGenerationJob'
+    delete:
+      operationId: cancelVideoGenerationJob
+      tags:
+        - Video Generation
+      summary: Cancel a video-generation job
+      description: Cancels an in-progress video-generation job.
+      parameters:
+        - $ref: '#/components/parameters/VideoGenerationJobId'
+      responses:
+        '200':
+          description: Job cancelled.
+  /video-generation-jobs/template-jobs:
+    post:
+      operationId: createTemplateVideoGenerationJob
+      tags:
+        - Video Generation
+      summary: Create a video-generation job from a template
+      description: >-
+        Generates a video from an existing Colossyan template, supplying
+        dynamic variables to populate template placeholders.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TemplateVideoGenerationJobRequest'
+      responses:
+        '200':
+          description: Template job created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VideoGenerationJob'
+  /generated-videos/{videoId}:
+    get:
+      operationId: getGeneratedVideo
+      tags:
+        - Generated Videos
+      summary: Get a generated video
+      description: Retrieves details and download URLs for a generated video.
+      parameters:
+        - $ref: '#/components/parameters/VideoId'
+      responses:
+        '200':
+          description: Video retrieved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneratedVideo'
+    delete:
+      operationId: deleteGeneratedVideo
+      tags:
+        - Generated Videos
+      summary: Delete a generated video
+      description: Deletes a generated video.
+      parameters:
+        - $ref: '#/components/parameters/VideoId'
+      responses:
+        '200':
+          description: Video deleted.
+  /assets/actors:
+    get:
+      operationId: listAvatars
+      tags:
+        - Avatars
+      summary: List avatars
+      description: >-
+        Returns the avatars/presenters available to the workspace. Avatar types
+        include Studio (provided by Colossyan), Scenario (provided by Colossyan
+        with scenario backgrounds), and Instant (custom-made) avatars.
+      responses:
+        '200':
+          description: A list of avatars.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Avatar'
+    post:
+      operationId: createAvatar
+      tags:
+        - Avatars
+      summary: Create an Instant avatar
+      description: >-
+        Creates a custom Instant avatar from a source image or video URL in a
+        single request.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAvatarRequest'
+      responses:
+        '200':
+          description: Avatar created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Avatar'
+  /assets/voices:
+    get:
+      operationId: listVoices
+      tags:
+        - Voices
+      summary: List voices
+      description: >-
+        Returns the AI voices available for narration across the platform's
+        supported languages.
+      responses:
+        '200':
+          description: A list of voices.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Voice'
+  /knowledge-to-draft/generate-draft:
+    post:
+      operationId: generateDraftFromKnowledge
+      tags:
+        - Experimental
+      summary: Generate a draft from a knowledge source (experimental)
+      description: >-
+        Experimental endpoint that generates a video draft from a knowledge
+        source. Served from the non-versioned base URL
+        https://app.colossyan.com/api and subject to change.
+      servers:
+        - url: https://app.colossyan.com/api
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+              description: >-
+                Experimental request body. Schema is not formally documented.
+      responses:
+        '200':
+          description: Draft generated.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: >-
+        Bearer token authentication. Provide the workspace API token in the
+        Authorization header as `Bearer {token}`. The token is available in the
+        workspace Settings and requires a Business or Enterprise plan.
+  parameters:
+    VideoGenerationJobId:
+      name: videoGenerationJobId
+      in: path
+      required: true
+      description: The identifier of the video-generation job.
+      schema:
+        type: string
+    VideoId:
+      name: videoId
+      in: path
+      required: true
+      description: The identifier of the generated video.
+      schema:
+        type: string
+  schemas:
+    VideoGenerationJobRequest:
+      type: object
+      description: >-
+        Descriptor for a video-generation job. The videoCreative object models
+        the video timeline as scenes containing tracks (actor, video, image,
+        audio, text). Field set below reflects documented fields; the full
+        schema is not published.
+      properties:
+        videoCreative:
+          $ref: '#/components/schemas/VideoCreative'
+        dynamicVariables:
+          type: object
+          additionalProperties: true
+          description: Template variable substitutions applied during rendering.
+        callback:
+          type: string
+          format: uri
+          description: Webhook URL notified when the job completes.
+        callbackPayload:
+          type: object
+          additionalProperties: true
+          description: Custom data echoed back in the completion webhook payload.
+    TemplateVideoGenerationJobRequest:
+      type: object
+      description: Request to generate a video from an existing template.
+      properties:
+        templateId:
+          type: string
+          description: Identifier of the Colossyan template to render.
+        dynamicVariables:
+          type: object
+          additionalProperties: true
+          description: Values that populate the template's placeholders.
+        callback:
+          type: string
+          format: uri
+          description: Webhook URL notified when the job completes.
+        callbackPayload:
+          type: object
+          additionalProperties: true
+          description: Custom data echoed back in the completion webhook payload.
+    VideoCreative:
+      type: object
+      description: The video timeline definition.
+      properties:
+        settings:
+          type: object
+          properties:
+            name:
+              type: string
+              description: Video title.
+            videoSize:
+              type: object
+              description: Output video dimensions.
+              properties:
+                width:
+                  type: integer
+                height:
+                  type: integer
+        scenes:
+          type: array
+          description: Ordered scenes that make up the video.
+          items:
+            $ref: '#/components/schemas/Scene'
+    Scene:
+      type: object
+      properties:
+        tracks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Track'
+    Track:
+      type: object
+      description: >-
+        A track within a scene. The track type determines which fields apply
+        (actor, video, image, audio, text).
+      properties:
+        type:
+          type: string
+          description: Track type.
+          enum:
+            - actor
+            - video
+            - image
+            - audio
+            - text
+        actor:
+          type: string
+          description: Avatar identifier for actor tracks.
+        text:
+          type: string
+          description: Script content spoken or displayed.
+        speakerId:
+          type: string
+          description: Voice identifier used for narration.
+    VideoGenerationJob:
+      type: object
+      description: Status of a submitted video-generation job.
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+          description: Current job status.
+        jobId:
+          type: string
+    GeneratedVideo:
+      type: object
+      description: A completed video.
+      properties:
+        id:
+          type: string
+        jobId:
+          type: string
+        name:
+          type: string
+        publicUrl:
+          type: string
+          format: uri
+          description: Downloadable video URL.
+        thumbnailUrl:
+          type: string
+          format: uri
+        createdAt:
+          type: string
+          format: date-time
+        videoSizeBytes:
+          type: integer
+        videoDurationSeconds:
+          type: number
+    Avatar:
+      type: object
+      description: An avatar/presenter available for video generation.
+      properties:
+        name:
+          type: string
+          description: Identifier used to reference the avatar in video generation.
+        displayName:
+          type: string
+        type:
+          type: string
+          description: Avatar type.
+          enum:
+            - Studio
+            - Scenario
+            - Instant
+        gender:
+          type: string
+          enum:
+            - Male
+            - Female
+    CreateAvatarRequest:
+      type: object
+      description: Request to create a custom Instant avatar.
+      required:
+        - sourceFileUrl
+      properties:
+        displayName:
+          type: string
+          description: Display name for the avatar.
+        sourceFileUrl:
+          type: string
+          format: uri
+          description: Image or video URL used to generate the avatar.
+        gender:
+          type: string
+          enum:
+            - Male
+            - Female
+    Voice:
+      type: object
+      description: An AI voice available for narration.
+      properties:
+        speakerId:
+          type: string
+          description: Identifier used as speakerId on tracks during video generation.
+        name:
+          type: string
+        language:
+          type: string
+    WebhookCallback:
+      type: object
+      description: >-
+        Payload delivered to the caller-supplied callback URL when a
+        video-generation job finishes. Includes the original callbackPayload
+        and dynamicVariables from the request.
+      properties:
+        url:
+          type: string
+          format: uri
+          description: Public video download link.
+        videoUrl:
+          type: string
+          format: uri
+          description: Colossyan sharing platform URL.
+        shareUrl:
+          type: string
+          format: uri
+          description: Alternative sharing URL.
+        status:
+          type: string
+          enum:
+            - finished
+            - failed

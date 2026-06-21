@@ -1,0 +1,143 @@
+aid: colossyan
+url: https://raw.githubusercontent.com/api-evangelist/colossyan/refs/heads/main/apis.yml
+name: Colossyan
+kind: company
+description: Colossyan is an AI avatar and video generation platform for learning and
+  development. Its REST API turns scripts into studio-quality videos with AI avatars
+  and voices, lists avatars/presenters, voices and templates, supports instant avatar
+  and voice clone creation, and exposes asynchronous video-generation jobs with
+  webhook callbacks. API access requires a Business or Enterprise plan.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- AI
+- Video Generation
+- Avatars
+- Text to Video
+- Learning and Development
+created: '2026-06-21'
+modified: '2026-06-21'
+specificationVersion: '0.19'
+apis:
+- aid: colossyan:video-generation
+  name: Colossyan Video Generation API
+  tags:
+  - Video Generation
+  - Text to Video
+  - Async
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.colossyan.com/basics/video-generation
+  baseURL: https://app.colossyan.com/api/v1
+  properties:
+  - url: https://docs.colossyan.com/basics/video-generation
+    type: Documentation
+  - url: https://docs.colossyan.com/
+    type: APIReference
+  - url: openapi/colossyan-openapi.yml
+    type: OpenAPI
+  - url: collections/colossyan.postman_collection.json
+    type: PostmanCollection
+  - url: collections/colossyan.opencollection.json
+    type: OpenCollection
+  description: Creates videos from a script + avatar + voice by submitting an
+    asynchronous video-generation job, with template-based generation, dynamic
+    variable substitution, and retrieval/deletion of generated videos.
+- aid: colossyan:avatars-presenters
+  name: Colossyan Avatars / Presenters API
+  tags:
+  - Avatars
+  - Presenters
+  - Instant Avatar
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.colossyan.com/avatar-creation/create-avatar
+  baseURL: https://app.colossyan.com/api/v1
+  properties:
+  - url: https://docs.colossyan.com/avatar-creation/create-avatar
+    type: Documentation
+  - url: https://docs.colossyan.com/basics/openapi/list-avatars
+    type: APIReference
+  - url: openapi/colossyan-openapi.yml
+    type: OpenAPI
+  - url: collections/colossyan.postman_collection.json
+    type: PostmanCollection
+  - url: collections/colossyan.opencollection.json
+    type: OpenCollection
+  description: Lists available avatars/presenters (Studio, Scenario, and Instant
+    types) and creates custom Instant avatars from a source image or video URL.
+- aid: colossyan:voices
+  name: Colossyan Voices API
+  tags:
+  - Voices
+  - Text to Speech
+  - Languages
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.colossyan.com/
+  baseURL: https://app.colossyan.com/api/v1
+  properties:
+  - url: https://docs.colossyan.com/
+    type: Documentation
+  - url: openapi/colossyan-openapi.yml
+    type: OpenAPI
+  - url: collections/colossyan.postman_collection.json
+    type: PostmanCollection
+  - url: collections/colossyan.opencollection.json
+    type: OpenCollection
+  description: Lists the AI voices available for narration across the platform's
+    supported languages, identified by a speaker ID used in video generation.
+- aid: colossyan:templates
+  name: Colossyan Templates API
+  tags:
+  - Templates
+  - Video Generation
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.colossyan.com/basics/video-generation
+  baseURL: https://app.colossyan.com/api/v1
+  properties:
+  - url: https://docs.colossyan.com/basics/video-generation
+    type: Documentation
+  - url: openapi/colossyan-openapi.yml
+    type: OpenAPI
+  - url: collections/colossyan.postman_collection.json
+    type: PostmanCollection
+  - url: collections/colossyan.opencollection.json
+    type: OpenCollection
+  description: Generates videos from reusable Colossyan templates, supplying dynamic
+    variables to populate text, avatars, and media placeholders.
+- aid: colossyan:job-status-webhooks
+  name: Colossyan Job Status / Webhooks API
+  tags:
+  - Job Status
+  - Webhooks
+  - Callbacks
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.colossyan.com/basics/video-generation
+  baseURL: https://app.colossyan.com/api/v1
+  properties:
+  - url: https://docs.colossyan.com/basics/video-generation
+    type: Documentation
+  - url: openapi/colossyan-openapi.yml
+    type: OpenAPI
+  - url: collections/colossyan.postman_collection.json
+    type: PostmanCollection
+  - url: collections/colossyan.opencollection.json
+    type: OpenCollection
+  description: Retrieves and cancels video-generation jobs and delivers completion
+    notifications to a caller-supplied callback (webhook) URL with the public
+    video URL, status, and custom callback payload.
+common:
+- type: GitHubOrganization
+  url: https://github.com/colossyan
+- type: LinkedIn
+  url: https://www.linkedin.com/company/colossyan
+- type: Website
+  url: https://www.colossyan.com
+- type: Documentation
+  url: https://docs.colossyan.com
+- type: Plans
+  url: plans/colossyan-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/colossyan-rate-limits.yml
+- type: FinOps
+  url: finops/colossyan-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

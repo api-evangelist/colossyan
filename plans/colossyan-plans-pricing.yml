@@ -1,0 +1,217 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Colossyan
+providerId: colossyan
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- AI
+- Video Generation
+- Avatars
+- Text to Video
+- Learning and Development
+- Plans
+description: >-
+  Colossyan sells subscription plans (Free, Starter, Business, Enterprise)
+  metered primarily by monthly video minutes, editor seats, number of AI
+  avatars, and Instant avatars. API access is gated to the Business and
+  Enterprise tiers and is also described as an add-on starting at a yearly
+  minute allotment. Plan prices, minute allotments, and feature inclusions
+  below reflect the public pricing page and may change; values are not
+  reconciled.
+notes: >-
+  Pricing observed on colossyan.com/pricing; verify current plan names,
+  prices, minute allotments, and API add-on terms during reconciliation.
+  Annual prices shown are the effective monthly rate when billed annually.
+sources:
+- https://www.colossyan.com/pricing
+- https://www.colossyan.com/api
+- https://docs.colossyan.com/
+plans:
+- id: colossyan-free
+  name: Free
+  type: free
+  description: >-
+    Entry tier for evaluating the platform. No API access.
+  entries:
+  - label: Video Minutes
+    name: video_minutes
+    type: limit
+    metric: minutes
+    limit: 3
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0
+    userMultiplied: false
+  - label: Editor Seats
+    name: seats
+    type: limit
+    metric: seats
+    limit: 1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  elements:
+  - name: 20+ AI avatars
+  - name: 1 instant avatar
+  - name: 100+ languages
+  - name: Unlimited viewers
+- id: colossyan-starter
+  name: Starter
+  type: paid
+  description: >-
+    Individual creator tier. No API access.
+  entries:
+  - label: Subscription (annual)
+    name: subscription_annual
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $19/month billed annually
+    userMultiplied: false
+  - label: Subscription (monthly)
+    name: subscription_monthly
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $27/month
+    userMultiplied: false
+  - label: Video Minutes
+    name: video_minutes
+    type: limit
+    metric: minutes
+    limit: 15
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  - label: Editor Seats
+    name: seats
+    type: limit
+    metric: seats
+    limit: 1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  elements:
+  - name: 70+ AI avatars
+  - name: 3 instant avatars
+  - name: 3 auto-translations
+  - name: Multiple avatar conversations
+- id: colossyan-business
+  name: Business
+  type: paid
+  description: >-
+    Team tier. Includes API access.
+  entries:
+  - label: Subscription (annual)
+    name: subscription_annual
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $70/month per editor billed annually
+    userMultiplied: true
+  - label: Subscription (monthly)
+    name: subscription_monthly
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $88/month per editor
+    userMultiplied: true
+  - label: Editor Seats
+    name: seats
+    type: limit
+    metric: seats
+    limit: 3
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  elements:
+  - name: API access
+  - name: 170+ AI avatars
+  - name: 10 instant avatars per editor
+  - name: Unlimited NEO 1 minutes
+  - name: 10 NEO 2 minutes per month
+  - name: 4 interactive videos per month
+  - name: 10 auto-translations per month
+  - name: Up to 30-minute videos
+- id: colossyan-enterprise
+  name: Enterprise
+  type: enterprise
+  description: >-
+    Custom tier with full API access, security, and governance. Contact sales.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: API access
+  - name: 200+ AI avatars
+  - name: Unlimited NEO 1 and NEO 2 minutes
+  - name: Unlimited interactive videos
+  - name: Unlimited auto-translations
+  - name: Brand kits
+  - name: SAML / SSO
+  - name: SCORM export
+  - name: Dedicated support
+- id: colossyan-addons
+  name: Add-ons
+  type: usage
+  description: >-
+    Optional add-ons layered onto a subscription.
+  entries:
+  - label: Studio Custom Avatars
+    name: studio_custom_avatars
+    type: flat
+    metric: avatars
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: $1,000/year
+    userMultiplied: false
+  - label: API Access (add-on)
+    name: api_access_addon
+    type: limit
+    metric: minutes
+    limit: 360
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: add-on; starts at 360 minutes/year
+    userMultiplied: false
+  elements:
+  - name: Custom Studio avatar creation
+  - name: API video-generation minutes
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
