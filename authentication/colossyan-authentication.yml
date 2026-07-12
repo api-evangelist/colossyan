@@ -1,0 +1,15 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/colossyan-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: Bearer token authentication. Provide the workspace API token in the Authorization
+    header as `Bearer {token}`. The token is available in the workspace Settings and requires
+    a Business or Enterprise plan.
+  sources:
+  - openapi/colossyan-openapi.yml

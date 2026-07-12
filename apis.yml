@@ -124,6 +124,12 @@ apis:
     notifications to a caller-supplied callback (webhook) URL with the public
     video URL, status, and custom callback payload.
 common:
+- type: TrustCenter
+  url: security/colossyan-trust-center.yml
+- type: DomainSecurity
+  url: security/colossyan-domain-security.yml
+- type: Authentication
+  url: authentication/colossyan-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/colossyan
 - type: LinkedIn
@@ -138,6 +144,8 @@ common:
   url: rate-limits/colossyan-rate-limits.yml
 - type: FinOps
   url: finops/colossyan-finops.yml
+- url: https://www.colossyan.com/blog
+  type: Blog
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
