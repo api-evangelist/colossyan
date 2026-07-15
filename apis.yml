@@ -124,6 +124,8 @@ apis:
     notifications to a caller-supplied callback (webhook) URL with the public
     video URL, status, and custom callback payload.
 common:
+- type: AgenticAccess
+  url: agentic-access/colossyan-agentic-access.yml
 - type: TrustCenter
   url: security/colossyan-trust-center.yml
 - type: DomainSecurity
