@@ -1,0 +1,101 @@
+openapi: 3.0.1
+info:
+  title: Colossyan Avatars API
+  description: REST API for the Colossyan AI avatar and video generation platform. Generate studio-quality videos from a script combined with AI avatars and voices via asynchronous video-generation jobs, list avatars/presenters and voices, create custom Instant avatars, generate from templates, and receive completion notifications via webhook callbacks. All requests and responses use JSON. API access requires a Business or Enterprise plan; the API token is found in the workspace Settings. Endpoint paths, request fields, and response fields below reflect Colossyan's public documentation (docs.colossyan.com); exact JSON schemas are not fully published, so request and response bodies are described as free-form objects where the schema is not documented.
+  termsOfService: https://www.colossyan.com/terms-and-conditions
+  contact:
+    name: Colossyan Support
+    url: https://www.colossyan.com/contact
+  version: '1.0'
+servers:
+- url: https://app.colossyan.com/api/v1
+  description: Stable v1 API
+- url: https://app.colossyan.com/api
+  description: Experimental (non-versioned) endpoints
+security:
+- bearerAuth: []
+tags:
+- name: Avatars
+  description: List avatars/presenters and create custom Instant avatars.
+paths:
+  /assets/actors:
+    get:
+      operationId: listAvatars
+      tags:
+      - Avatars
+      summary: List avatars
+      description: Returns the avatars/presenters available to the workspace. Avatar types include Studio (provided by Colossyan), Scenario (provided by Colossyan with scenario backgrounds), and Instant (custom-made) avatars.
+      responses:
+        '200':
+          description: A list of avatars.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Avatar'
+    post:
+      operationId: createAvatar
+      tags:
+      - Avatars
+      summary: Create an Instant avatar
+      description: Creates a custom Instant avatar from a source image or video URL in a single request.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAvatarRequest'
+      responses:
+        '200':
+          description: Avatar created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Avatar'
+components:
+  schemas:
+    Avatar:
+      type: object
+      description: An avatar/presenter available for video generation.
+      properties:
+        name:
+          type: string
+          description: Identifier used to reference the avatar in video generation.
+        displayName:
+          type: string
+        type:
+          type: string
+          description: Avatar type.
+          enum:
+          - Studio
+          - Scenario
+          - Instant
+        gender:
+          type: string
+          enum:
+          - Male
+          - Female
+    CreateAvatarRequest:
+      type: object
+      description: Request to create a custom Instant avatar.
+      required:
+      - sourceFileUrl
+      properties:
+        displayName:
+          type: string
+          description: Display name for the avatar.
+        sourceFileUrl:
+          type: string
+          format: uri
+          description: Image or video URL used to generate the avatar.
+        gender:
+          type: string
+          enum:
+          - Male
+          - Female
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token authentication. Provide the workspace API token in the Authorization header as `Bearer {token}`. The token is available in the workspace Settings and requires a Business or Enterprise plan.

@@ -1,0 +1,51 @@
+openapi: 3.0.1
+info:
+  title: Colossyan Avatars Experimental API
+  description: REST API for the Colossyan AI avatar and video generation platform. Generate studio-quality videos from a script combined with AI avatars and voices via asynchronous video-generation jobs, list avatars/presenters and voices, create custom Instant avatars, generate from templates, and receive completion notifications via webhook callbacks. All requests and responses use JSON. API access requires a Business or Enterprise plan; the API token is found in the workspace Settings. Endpoint paths, request fields, and response fields below reflect Colossyan's public documentation (docs.colossyan.com); exact JSON schemas are not fully published, so request and response bodies are described as free-form objects where the schema is not documented.
+  termsOfService: https://www.colossyan.com/terms-and-conditions
+  contact:
+    name: Colossyan Support
+    url: https://www.colossyan.com/contact
+  version: '1.0'
+servers:
+- url: https://app.colossyan.com/api/v1
+  description: Stable v1 API
+- url: https://app.colossyan.com/api
+  description: Experimental (non-versioned) endpoints
+security:
+- bearerAuth: []
+tags:
+- name: Experimental
+  description: Non-versioned, experimental endpoints subject to change.
+paths:
+  /knowledge-to-draft/generate-draft:
+    post:
+      operationId: generateDraftFromKnowledge
+      tags:
+      - Experimental
+      summary: Generate a draft from a knowledge source (experimental)
+      description: Experimental endpoint that generates a video draft from a knowledge source. Served from the non-versioned base URL https://app.colossyan.com/api and subject to change.
+      servers:
+      - url: https://app.colossyan.com/api
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+              description: Experimental request body. Schema is not formally documented.
+      responses:
+        '200':
+          description: Draft generated.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token authentication. Provide the workspace API token in the Authorization header as `Bearer {token}`. The token is available in the workspace Settings and requires a Business or Enterprise plan.

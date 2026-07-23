@@ -1,0 +1,54 @@
+openapi: 3.0.1
+info:
+  title: Colossyan Avatars Voices API
+  description: REST API for the Colossyan AI avatar and video generation platform. Generate studio-quality videos from a script combined with AI avatars and voices via asynchronous video-generation jobs, list avatars/presenters and voices, create custom Instant avatars, generate from templates, and receive completion notifications via webhook callbacks. All requests and responses use JSON. API access requires a Business or Enterprise plan; the API token is found in the workspace Settings. Endpoint paths, request fields, and response fields below reflect Colossyan's public documentation (docs.colossyan.com); exact JSON schemas are not fully published, so request and response bodies are described as free-form objects where the schema is not documented.
+  termsOfService: https://www.colossyan.com/terms-and-conditions
+  contact:
+    name: Colossyan Support
+    url: https://www.colossyan.com/contact
+  version: '1.0'
+servers:
+- url: https://app.colossyan.com/api/v1
+  description: Stable v1 API
+- url: https://app.colossyan.com/api
+  description: Experimental (non-versioned) endpoints
+security:
+- bearerAuth: []
+tags:
+- name: Voices
+  description: List available AI voices.
+paths:
+  /assets/voices:
+    get:
+      operationId: listVoices
+      tags:
+      - Voices
+      summary: List voices
+      description: Returns the AI voices available for narration across the platform's supported languages.
+      responses:
+        '200':
+          description: A list of voices.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Voice'
+components:
+  schemas:
+    Voice:
+      type: object
+      description: An AI voice available for narration.
+      properties:
+        speakerId:
+          type: string
+          description: Identifier used as speakerId on tracks during video generation.
+        name:
+          type: string
+        language:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token authentication. Provide the workspace API token in the Authorization header as `Bearer {token}`. The token is available in the workspace Settings and requires a Business or Enterprise plan.

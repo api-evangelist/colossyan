@@ -1,0 +1,86 @@
+openapi: 3.0.1
+info:
+  title: Colossyan Avatars Generated Videos API
+  description: REST API for the Colossyan AI avatar and video generation platform. Generate studio-quality videos from a script combined with AI avatars and voices via asynchronous video-generation jobs, list avatars/presenters and voices, create custom Instant avatars, generate from templates, and receive completion notifications via webhook callbacks. All requests and responses use JSON. API access requires a Business or Enterprise plan; the API token is found in the workspace Settings. Endpoint paths, request fields, and response fields below reflect Colossyan's public documentation (docs.colossyan.com); exact JSON schemas are not fully published, so request and response bodies are described as free-form objects where the schema is not documented.
+  termsOfService: https://www.colossyan.com/terms-and-conditions
+  contact:
+    name: Colossyan Support
+    url: https://www.colossyan.com/contact
+  version: '1.0'
+servers:
+- url: https://app.colossyan.com/api/v1
+  description: Stable v1 API
+- url: https://app.colossyan.com/api
+  description: Experimental (non-versioned) endpoints
+security:
+- bearerAuth: []
+tags:
+- name: Generated Videos
+  description: Retrieve and delete completed videos.
+paths:
+  /generated-videos/{videoId}:
+    get:
+      operationId: getGeneratedVideo
+      tags:
+      - Generated Videos
+      summary: Get a generated video
+      description: Retrieves details and download URLs for a generated video.
+      parameters:
+      - $ref: '#/components/parameters/VideoId'
+      responses:
+        '200':
+          description: Video retrieved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneratedVideo'
+    delete:
+      operationId: deleteGeneratedVideo
+      tags:
+      - Generated Videos
+      summary: Delete a generated video
+      description: Deletes a generated video.
+      parameters:
+      - $ref: '#/components/parameters/VideoId'
+      responses:
+        '200':
+          description: Video deleted.
+components:
+  schemas:
+    GeneratedVideo:
+      type: object
+      description: A completed video.
+      properties:
+        id:
+          type: string
+        jobId:
+          type: string
+        name:
+          type: string
+        publicUrl:
+          type: string
+          format: uri
+          description: Downloadable video URL.
+        thumbnailUrl:
+          type: string
+          format: uri
+        createdAt:
+          type: string
+          format: date-time
+        videoSizeBytes:
+          type: integer
+        videoDurationSeconds:
+          type: number
+  parameters:
+    VideoId:
+      name: videoId
+      in: path
+      required: true
+      description: The identifier of the generated video.
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token authentication. Provide the workspace API token in the Authorization header as `Bearer {token}`. The token is available in the workspace Settings and requires a Business or Enterprise plan.
