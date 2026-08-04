@@ -1,0 +1,22 @@
+{
+  "provider": "colossyan",
+  "sources": [
+    "colossyan-avatars-api-openapi.yml",
+    "colossyan-experimental-api-openapi.yml",
+    "colossyan-generated-videos-api-openapi.yml",
+    "colossyan-video-generation-api-openapi.yml",
+    "colossyan-voices-api-openapi.yml"
+  ],
+  "outputs": [
+    "colossyan-avatars-api-openapi.yml",
+    "colossyan-experimental-api-openapi.yml",
+    "colossyan-generated-videos-api-openapi.yml",
+    "colossyan-video-generation-api-openapi.yml",
+    "colossyan-voices-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
