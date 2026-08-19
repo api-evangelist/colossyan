@@ -1,0 +1,50 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Colossyan Avatars API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Avatars",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List avatars",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.colossyan.com/api/v1/assets/actors"
+          },
+          "docs": "Returns the avatars/presenters available to the workspace. Avatar types include Studio (provided by Colossyan), Scenario (provided by Colossyan with scenario backgrounds), and Instant (custom-made) avatars."
+        },
+        {
+          "info": {
+            "name": "Create an Instant avatar",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.colossyan.com/api/v1/assets/actors",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a custom Instant avatar from a source image or video URL in a single request."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

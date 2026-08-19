@@ -1,0 +1,222 @@
+{
+  "item": [
+    {
+      "id": "bba8007b-712b-433e-8c79-d5daff165620",
+      "name": "Avatars",
+      "description": {
+        "content": "List avatars/presenters and create custom Instant avatars.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2d2de206-d938-45ab-8cc7-2864f69ce059",
+          "name": "List avatars",
+          "request": {
+            "name": "List avatars",
+            "description": {
+              "content": "Returns the avatars/presenters available to the workspace. Avatar types include Studio (provided by Colossyan), Scenario (provided by Colossyan with scenario backgrounds), and Instant (custom-made) avatars.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assets",
+                "actors"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d99152a1-0808-4d13-b39e-d5416194b039",
+              "name": "A list of avatars.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    "actors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"displayName\": \"string\",\n    \"type\": \"Studio\",\n    \"gender\": \"Female\"\n  },\n  {\n    \"name\": \"string\",\n    \"displayName\": \"string\",\n    \"type\": \"Instant\",\n    \"gender\": \"Female\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "574ef3aa-6095-4197-aaa6-61f985874f64",
+          "name": "Create an Instant avatar",
+          "request": {
+            "name": "Create an Instant avatar",
+            "description": {
+              "content": "Creates a custom Instant avatar from a source image or video URL in a single request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assets",
+                "actors"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sourceFileUrl\": \"<uri>\",\n  \"displayName\": \"<string>\",\n  \"gender\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2dd61a49-c0cc-44e3-a79f-e1883306bbae",
+              "name": "Avatar created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    "actors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sourceFileUrl\": \"<uri>\",\n  \"displayName\": \"<string>\",\n  \"gender\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"displayName\": \"string\",\n  \"type\": \"Scenario\",\n  \"gender\": \"Female\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.colossyan.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e586006d-88b4-4b46-a612-264ba26988b1",
+    "name": "Colossyan Avatars API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for the Colossyan AI avatar and video generation platform. Generate studio-quality videos from a script combined with AI avatars and voices via asynchronous video-generation jobs, list avatars/presenters and voices, create custom Instant avatars, generate from templates, and receive completion notifications via webhook callbacks. All requests and responses use JSON. API access requires a Business or Enterprise plan; the API token is found in the workspace Settings. Endpoint paths, request fields, and response fields below reflect Colossyan's public documentation (docs.colossyan.com); exact JSON schemas are not fully published, so request and response bodies are described as free-form objects where the schema is not documented.\n\nContact Support:\n Name: Colossyan Support",
+      "type": "text/plain"
+    }
+  }
+}

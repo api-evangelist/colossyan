@@ -1,0 +1,423 @@
+{
+  "item": [
+    {
+      "id": "30d1fe88-55d7-4644-9e52-8eb2c8ec1e61",
+      "name": "Video Generation",
+      "description": {
+        "content": "Create and manage asynchronous video-generation jobs.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "36a8afed-096f-4c72-ad0a-146ccd760677",
+          "name": "Create a video-generation job",
+          "request": {
+            "name": "Create a video-generation job",
+            "description": {
+              "content": "Submits an asynchronous job that renders a video from a video creative descriptor (scenes, tracks, avatars, scripts, voices). Optionally supply a callback URL to be notified on completion and dynamic variables for substitution.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "video-generation-jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"videoCreative\": {\n    \"settings\": {\n      \"name\": \"<string>\",\n      \"videoSize\": {\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\"\n      }\n    },\n    \"scenes\": [\n      {\n        \"tracks\": [\n          {\n            \"type\": \"<string>\",\n            \"actor\": \"<string>\",\n            \"text\": \"<string>\",\n            \"speakerId\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"actor\": \"<string>\",\n            \"text\": \"<string>\",\n            \"speakerId\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"tracks\": [\n          {\n            \"type\": \"<string>\",\n            \"actor\": \"<string>\",\n            \"text\": \"<string>\",\n            \"speakerId\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"actor\": \"<string>\",\n            \"text\": \"<string>\",\n            \"speakerId\": \"<string>\"\n          }\n        ]\n      }\n    ]\n  },\n  \"dynamicVariables\": {\n    \"key_0\": 8798,\n    \"key_1\": \"string\"\n  },\n  \"callback\": \"<uri>\",\n  \"callbackPayload\": {\n    \"key_0\": 5233,\n    \"key_1\": true,\n    \"key_2\": \"string\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f8a634d1-8be6-492e-839c-097975b2c71b",
+              "name": "Job created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "video-generation-jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"videoCreative\": {\n    \"settings\": {\n      \"name\": \"<string>\",\n      \"videoSize\": {\n        \"width\": \"<integer>\",\n        \"height\": \"<integer>\"\n      }\n    },\n    \"scenes\": [\n      {\n        \"tracks\": [\n          {\n            \"type\": \"<string>\",\n            \"actor\": \"<string>\",\n            \"text\": \"<string>\",\n            \"speakerId\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"actor\": \"<string>\",\n            \"text\": \"<string>\",\n            \"speakerId\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"tracks\": [\n          {\n            \"type\": \"<string>\",\n            \"actor\": \"<string>\",\n            \"text\": \"<string>\",\n            \"speakerId\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"actor\": \"<string>\",\n            \"text\": \"<string>\",\n            \"speakerId\": \"<string>\"\n          }\n        ]\n      }\n    ]\n  },\n  \"dynamicVariables\": {\n    \"key_0\": 287\n  },\n  \"callback\": \"<uri>\",\n  \"callbackPayload\": {\n    \"key_0\": 3747.4153467011206,\n    \"key_1\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"string\",\n  \"jobId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b0805563-83d4-4ae9-a8a2-ec42ff85ff8d",
+          "name": "Get a video-generation job",
+          "request": {
+            "name": "Get a video-generation job",
+            "description": {
+              "content": "Retrieves the status and progress of a video-generation job.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "video-generation-jobs",
+                ":videoGenerationJobId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "videoGenerationJobId",
+                  "description": "(Required) The identifier of the video-generation job."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "931999e2-af17-4d4b-8ed0-63e9bde959a3",
+              "name": "Job retrieved.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "video-generation-jobs",
+                    ":videoGenerationJobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "videoGenerationJobId",
+                      "description": "(Required) The identifier of the video-generation job."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"string\",\n  \"jobId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cd46fbc2-6e3d-4ea0-84ba-44ad6e10d7b2",
+          "name": "Cancel a video-generation job",
+          "request": {
+            "name": "Cancel a video-generation job",
+            "description": {
+              "content": "Cancels an in-progress video-generation job.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "video-generation-jobs",
+                ":videoGenerationJobId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "videoGenerationJobId",
+                  "description": "(Required) The identifier of the video-generation job."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "738b62ff-434a-4584-9007-b29198790f27",
+              "name": "Job cancelled.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "video-generation-jobs",
+                    ":videoGenerationJobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "videoGenerationJobId",
+                      "description": "(Required) The identifier of the video-generation job."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d8c1a789-a753-4008-85a3-44b19978e8ab",
+          "name": "Create a video-generation job from a template",
+          "request": {
+            "name": "Create a video-generation job from a template",
+            "description": {
+              "content": "Generates a video from an existing Colossyan template, supplying dynamic variables to populate template placeholders.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "video-generation-jobs",
+                "template-jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"templateId\": \"<string>\",\n  \"dynamicVariables\": {\n    \"key_0\": \"string\",\n    \"key_1\": true\n  },\n  \"callback\": \"<uri>\",\n  \"callbackPayload\": {\n    \"key_0\": 4724,\n    \"key_1\": 2368.450221952104\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6db51b0c-9358-45b7-b1a8-a0bdbf20cfb9",
+              "name": "Template job created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "video-generation-jobs",
+                    "template-jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"templateId\": \"<string>\",\n  \"dynamicVariables\": {\n    \"key_0\": 1377.4932896767311,\n    \"key_1\": 3183\n  },\n  \"callback\": \"<uri>\",\n  \"callbackPayload\": {\n    \"key_0\": 5465\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"string\",\n  \"jobId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.colossyan.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1e4353ed-4942-4be9-a0ff-9c493c5af2cd",
+    "name": "Colossyan Avatars Video Generation API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for the Colossyan AI avatar and video generation platform. Generate studio-quality videos from a script combined with AI avatars and voices via asynchronous video-generation jobs, list avatars/presenters and voices, create custom Instant avatars, generate from templates, and receive completion notifications via webhook callbacks. All requests and responses use JSON. API access requires a Business or Enterprise plan; the API token is found in the workspace Settings. Endpoint paths, request fields, and response fields below reflect Colossyan's public documentation (docs.colossyan.com); exact JSON schemas are not fully published, so request and response bodies are described as free-form objects where the schema is not documented.\n\nContact Support:\n Name: Colossyan Support",
+      "type": "text/plain"
+    }
+  }
+}

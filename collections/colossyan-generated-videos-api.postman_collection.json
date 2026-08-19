@@ -1,0 +1,223 @@
+{
+  "item": [
+    {
+      "id": "92a3b08f-294d-4053-b89d-67b54cf408ec",
+      "name": "Generated Videos",
+      "description": {
+        "content": "Retrieve and delete completed videos.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0e0f8423-9d38-4134-8922-d9d279509783",
+          "name": "Get a generated video",
+          "request": {
+            "name": "Get a generated video",
+            "description": {
+              "content": "Retrieves details and download URLs for a generated video.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "generated-videos",
+                ":videoId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "videoId",
+                  "description": "(Required) The identifier of the generated video."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9cb8b14c-13a9-48ea-b10c-fab8e692117a",
+              "name": "Video retrieved.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "generated-videos",
+                    ":videoId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "videoId",
+                      "description": "(Required) The identifier of the generated video."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"jobId\": \"string\",\n  \"name\": \"string\",\n  \"publicUrl\": \"http://JNprHDrRjmrFDNGmYNLI.ekhEXE+NsZ96BPTJPyvBysw6jnsvINIVew7jfgt8RX41AO+TwE\",\n  \"thumbnailUrl\": \"https://MgwCirMe.mkRZwLquzhNrV0jDnm\",\n  \"createdAt\": \"2021-07-08T23:45:29.648Z\",\n  \"videoSizeBytes\": 6742,\n  \"videoDurationSeconds\": 5596.547815110853\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bef51fae-f7f3-4e69-be08-78eb424b4a0a",
+          "name": "Delete a generated video",
+          "request": {
+            "name": "Delete a generated video",
+            "description": {
+              "content": "Deletes a generated video.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "generated-videos",
+                ":videoId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "videoId",
+                  "description": "(Required) The identifier of the generated video."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "94691d57-9206-4629-921e-b834f918574d",
+              "name": "Video deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "generated-videos",
+                    ":videoId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "videoId",
+                      "description": "(Required) The identifier of the generated video."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.colossyan.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "57ba3b58-2b29-4e7e-93e4-f81ee7bc3323",
+    "name": "Colossyan Avatars Generated Videos API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for the Colossyan AI avatar and video generation platform. Generate studio-quality videos from a script combined with AI avatars and voices via asynchronous video-generation jobs, list avatars/presenters and voices, create custom Instant avatars, generate from templates, and receive completion notifications via webhook callbacks. All requests and responses use JSON. API access requires a Business or Enterprise plan; the API token is found in the workspace Settings. Endpoint paths, request fields, and response fields below reflect Colossyan's public documentation (docs.colossyan.com); exact JSON schemas are not fully published, so request and response bodies are described as free-form objects where the schema is not documented.\n\nContact Support:\n Name: Colossyan Support",
+      "type": "text/plain"
+    }
+  }
+}

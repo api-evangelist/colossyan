@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Colossyan Avatars Generated Videos API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Generated Videos",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a generated video",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.colossyan.com/api/v1/generated-videos/:videoId",
+            "params": [
+              {
+                "name": "videoId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the generated video."
+              }
+            ]
+          },
+          "docs": "Retrieves details and download URLs for a generated video."
+        },
+        {
+          "info": {
+            "name": "Delete a generated video",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://app.colossyan.com/api/v1/generated-videos/:videoId",
+            "params": [
+              {
+                "name": "videoId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the generated video."
+              }
+            ]
+          },
+          "docs": "Deletes a generated video."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

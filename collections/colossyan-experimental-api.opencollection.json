@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Colossyan Avatars Experimental API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Experimental",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate a draft from a knowledge source (experimental)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.colossyan.com/api/v1/knowledge-to-draft/generate-draft",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Experimental endpoint that generates a video draft from a knowledge source. Served from the non-versioned base URL https://app.colossyan.com/api and subject to change."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,92 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Colossyan Avatars Video Generation API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Video Generation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a video-generation job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.colossyan.com/api/v1/video-generation-jobs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits an asynchronous job that renders a video from a video creative descriptor (scenes, tracks, avatars, scripts, voices). Optionally supply a callback URL to be notified on completion and dynamic variables for substitution."
+        },
+        {
+          "info": {
+            "name": "Get a video-generation job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.colossyan.com/api/v1/video-generation-jobs/:videoGenerationJobId",
+            "params": [
+              {
+                "name": "videoGenerationJobId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the video-generation job."
+              }
+            ]
+          },
+          "docs": "Retrieves the status and progress of a video-generation job."
+        },
+        {
+          "info": {
+            "name": "Cancel a video-generation job",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://app.colossyan.com/api/v1/video-generation-jobs/:videoGenerationJobId",
+            "params": [
+              {
+                "name": "videoGenerationJobId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the video-generation job."
+              }
+            ]
+          },
+          "docs": "Cancels an in-progress video-generation job."
+        },
+        {
+          "info": {
+            "name": "Create a video-generation job from a template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.colossyan.com/api/v1/video-generation-jobs/template-jobs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generates a video from an existing Colossyan template, supplying dynamic variables to populate template placeholders."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
