@@ -22,6 +22,12 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/colossyan.png
 tags:
+- Artificial Intelligence
+- Video Generation
+- Avatars
+- Text-to-Video
+- Learning and Development
+tags_raw:
 - AI
 - Video Generation
 - Avatars
