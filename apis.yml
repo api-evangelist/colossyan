@@ -7,6 +7,18 @@ description: Colossyan is an AI avatar and video generation platform for learnin
   and voices, lists avatars/presenters, voices and templates, supports instant avatar
   and voice clone creation, and exposes asynchronous video-generation jobs with
   webhook callbacks. API access requires a Business or Enterprise plan.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
