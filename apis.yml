@@ -152,6 +152,8 @@ apis:
   humanURL: https://docs.colossyan.com/basics/video-generation
   baseURL: https://app.colossyan.com/api/v1
   tags:
+  - Voice
+  tags_raw:
   - Voices
   properties:
   - type: OpenAPI
