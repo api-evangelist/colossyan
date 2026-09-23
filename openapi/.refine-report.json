@@ -1,11 +1,7 @@
 {
   "provider": "colossyan",
   "sources": [
-    "colossyan-avatars-api-openapi.yml",
-    "colossyan-experimental-api-openapi.yml",
-    "colossyan-generated-videos-api-openapi.yml",
-    "colossyan-video-generation-api-openapi.yml",
-    "colossyan-voices-api-openapi.yml"
+    "_original/colossyan-openapi.yml"
   ],
   "outputs": [
     "colossyan-avatars-api-openapi.yml",
@@ -17,6 +13,16 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "colossyan-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "colossyan-avatars-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "colossyan-experimental-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "colossyan-generated-videos-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "colossyan-video-generation-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "colossyan-voices-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

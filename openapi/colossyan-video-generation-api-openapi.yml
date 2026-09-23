@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Colossyan Avatars Video Generation API
-  description: REST API for the Colossyan AI avatar and video generation platform. Generate studio-quality videos from a script combined with AI avatars and voices via asynchronous video-generation jobs, list avatars/presenters and voices, create custom Instant avatars, generate from templates, and receive completion notifications via webhook callbacks. All requests and responses use JSON. API access requires a Business or Enterprise plan; the API token is found in the workspace Settings. Endpoint paths, request fields, and response fields below reflect Colossyan's public documentation (docs.colossyan.com); exact JSON schemas are not fully published, so request and response bodies are described as free-form objects where the schema is not documented.
+  title: Colossyan Video Generation API
+  description: REST API for the Colossyan AI avatar and video generation platform.
   termsOfService: https://www.colossyan.com/terms-and-conditions
   contact:
     name: Colossyan Support
@@ -86,15 +86,36 @@ paths:
               schema:
                 $ref: '#/components/schemas/VideoGenerationJob'
 components:
-  parameters:
-    VideoGenerationJobId:
-      name: videoGenerationJobId
-      in: path
-      required: true
-      description: The identifier of the video-generation job.
-      schema:
-        type: string
   schemas:
+    Track:
+      type: object
+      description: A track within a scene. The track type determines which fields apply (actor, video, image, audio, text).
+      properties:
+        type:
+          type: string
+          description: Track type.
+          enum:
+          - actor
+          - video
+          - image
+          - audio
+          - text
+        actor:
+          type: string
+          description: Avatar identifier for actor tracks.
+        text:
+          type: string
+          description: Script content spoken or displayed.
+        speakerId:
+          type: string
+          description: Voice identifier used for narration.
+    Scene:
+      type: object
+      properties:
+        tracks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Track'
     VideoGenerationJobRequest:
       type: object
       description: Descriptor for a video-generation job. The videoCreative object models the video timeline as scenes containing tracks (actor, video, image, audio, text). Field set below reflects documented fields; the full schema is not published.
@@ -105,36 +126,6 @@ components:
           type: object
           additionalProperties: true
           description: Template variable substitutions applied during rendering.
-        callback:
-          type: string
-          format: uri
-          description: Webhook URL notified when the job completes.
-        callbackPayload:
-          type: object
-          additionalProperties: true
-          description: Custom data echoed back in the completion webhook payload.
-    VideoGenerationJob:
-      type: object
-      description: Status of a submitted video-generation job.
-      properties:
-        id:
-          type: string
-        status:
-          type: string
-          description: Current job status.
-        jobId:
-          type: string
-    TemplateVideoGenerationJobRequest:
-      type: object
-      description: Request to generate a video from an existing template.
-      properties:
-        templateId:
-          type: string
-          description: Identifier of the Colossyan template to render.
-        dynamicVariables:
-          type: object
-          additionalProperties: true
-          description: Values that populate the template's placeholders.
         callback:
           type: string
           format: uri
@@ -166,35 +157,44 @@ components:
           description: Ordered scenes that make up the video.
           items:
             $ref: '#/components/schemas/Scene'
-    Track:
+    VideoGenerationJob:
       type: object
-      description: A track within a scene. The track type determines which fields apply (actor, video, image, audio, text).
+      description: Status of a submitted video-generation job.
       properties:
-        type:
+        id:
           type: string
-          description: Track type.
-          enum:
-          - actor
-          - video
-          - image
-          - audio
-          - text
-        actor:
+        status:
           type: string
-          description: Avatar identifier for actor tracks.
-        text:
+          description: Current job status.
+        jobId:
           type: string
-          description: Script content spoken or displayed.
-        speakerId:
-          type: string
-          description: Voice identifier used for narration.
-    Scene:
+    TemplateVideoGenerationJobRequest:
       type: object
+      description: Request to generate a video from an existing template.
       properties:
-        tracks:
-          type: array
-          items:
-            $ref: '#/components/schemas/Track'
+        templateId:
+          type: string
+          description: Identifier of the Colossyan template to render.
+        dynamicVariables:
+          type: object
+          additionalProperties: true
+          description: Values that populate the template's placeholders.
+        callback:
+          type: string
+          format: uri
+          description: Webhook URL notified when the job completes.
+        callbackPayload:
+          type: object
+          additionalProperties: true
+          description: Custom data echoed back in the completion webhook payload.
+  parameters:
+    VideoGenerationJobId:
+      name: videoGenerationJobId
+      in: path
+      required: true
+      description: The identifier of the video-generation job.
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

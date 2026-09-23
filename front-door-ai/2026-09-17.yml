@@ -1,0 +1,29 @@
+# Front Door AI Index — colossyan — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: colossyan
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: www.colossyan.com
+  final_host: www.colossyan.com
+  ownership: own
+  owner: colossyan
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 54
+  host_score: 54
+  density: 25.95
+  words: 2081
+  tiers:
+    agentic: 10
+    core: 44
+    model: 0
+  ambiguous: 7
+  top_terms:
+    AI: 44
+    agent: 7
+    AI agent: 6
+    prompts: 3
+    conversational AI: 1
