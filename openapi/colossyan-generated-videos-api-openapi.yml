@@ -46,14 +46,6 @@ paths:
         '200':
           description: Video deleted.
 components:
-  parameters:
-    VideoId:
-      name: videoId
-      in: path
-      required: true
-      description: The identifier of the generated video.
-      schema:
-        type: string
   schemas:
     GeneratedVideo:
       type: object
@@ -79,6 +71,14 @@ components:
           type: integer
         videoDurationSeconds:
           type: number
+  parameters:
+    VideoId:
+      name: videoId
+      in: path
+      required: true
+      description: The identifier of the generated video.
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

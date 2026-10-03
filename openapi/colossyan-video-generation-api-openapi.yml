@@ -105,65 +105,6 @@ components:
           type: object
           additionalProperties: true
           description: Custom data echoed back in the completion webhook payload.
-    Track:
-      type: object
-      description: A track within a scene. The track type determines which fields apply (actor, video, image, audio, text).
-      properties:
-        type:
-          type: string
-          description: Track type.
-          enum:
-          - actor
-          - video
-          - image
-          - audio
-          - text
-        actor:
-          type: string
-          description: Avatar identifier for actor tracks.
-        text:
-          type: string
-          description: Script content spoken or displayed.
-        speakerId:
-          type: string
-          description: Voice identifier used for narration.
-    Scene:
-      type: object
-      properties:
-        tracks:
-          type: array
-          items:
-            $ref: '#/components/schemas/Track'
-    VideoGenerationJob:
-      type: object
-      description: Status of a submitted video-generation job.
-      properties:
-        id:
-          type: string
-        status:
-          type: string
-          description: Current job status.
-        jobId:
-          type: string
-    TemplateVideoGenerationJobRequest:
-      type: object
-      description: Request to generate a video from an existing template.
-      properties:
-        templateId:
-          type: string
-          description: Identifier of the Colossyan template to render.
-        dynamicVariables:
-          type: object
-          additionalProperties: true
-          description: Values that populate the template's placeholders.
-        callback:
-          type: string
-          format: uri
-          description: Webhook URL notified when the job completes.
-        callbackPayload:
-          type: object
-          additionalProperties: true
-          description: Custom data echoed back in the completion webhook payload.
     VideoCreative:
       type: object
       description: The video timeline definition.
@@ -187,6 +128,65 @@ components:
           description: Ordered scenes that make up the video.
           items:
             $ref: '#/components/schemas/Scene'
+    TemplateVideoGenerationJobRequest:
+      type: object
+      description: Request to generate a video from an existing template.
+      properties:
+        templateId:
+          type: string
+          description: Identifier of the Colossyan template to render.
+        dynamicVariables:
+          type: object
+          additionalProperties: true
+          description: Values that populate the template's placeholders.
+        callback:
+          type: string
+          format: uri
+          description: Webhook URL notified when the job completes.
+        callbackPayload:
+          type: object
+          additionalProperties: true
+          description: Custom data echoed back in the completion webhook payload.
+    VideoGenerationJob:
+      type: object
+      description: Status of a submitted video-generation job.
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+          description: Current job status.
+        jobId:
+          type: string
+    Scene:
+      type: object
+      properties:
+        tracks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Track'
+    Track:
+      type: object
+      description: A track within a scene. The track type determines which fields apply (actor, video, image, audio, text).
+      properties:
+        type:
+          type: string
+          description: Track type.
+          enum:
+          - actor
+          - video
+          - image
+          - audio
+          - text
+        actor:
+          type: string
+          description: Avatar identifier for actor tracks.
+        text:
+          type: string
+          description: Script content spoken or displayed.
+        speakerId:
+          type: string
+          description: Voice identifier used for narration.
   parameters:
     VideoGenerationJobId:
       name: videoGenerationJobId
