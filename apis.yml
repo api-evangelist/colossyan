@@ -176,6 +176,8 @@ apis:
   - type: Documentation
     url: https://docs.colossyan.com/
 common:
+- type: Pricing
+  url: https://www.colossyan.com/pricing/
 - type: AgenticAccess
   url: agentic-access/colossyan-agentic-access.yml
 - type: TrustCenter
