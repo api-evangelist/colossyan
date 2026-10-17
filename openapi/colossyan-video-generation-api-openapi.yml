@@ -87,13 +87,54 @@ paths:
                 $ref: '#/components/schemas/VideoGenerationJob'
 components:
   schemas:
-    Scene:
+    VideoGenerationJobRequest:
       type: object
+      description: Descriptor for a video-generation job. The videoCreative object models the video timeline as scenes containing tracks (actor, video, image, audio, text). Field set below reflects documented fields; the full schema is not published.
       properties:
-        tracks:
-          type: array
-          items:
-            $ref: '#/components/schemas/Track'
+        videoCreative:
+          $ref: '#/components/schemas/VideoCreative'
+        dynamicVariables:
+          type: object
+          additionalProperties: true
+          description: Template variable substitutions applied during rendering.
+        callback:
+          type: string
+          format: uri
+          description: Webhook URL notified when the job completes.
+        callbackPayload:
+          type: object
+          additionalProperties: true
+          description: Custom data echoed back in the completion webhook payload.
+    TemplateVideoGenerationJobRequest:
+      type: object
+      description: Request to generate a video from an existing template.
+      properties:
+        templateId:
+          type: string
+          description: Identifier of the Colossyan template to render.
+        dynamicVariables:
+          type: object
+          additionalProperties: true
+          description: Values that populate the template's placeholders.
+        callback:
+          type: string
+          format: uri
+          description: Webhook URL notified when the job completes.
+        callbackPayload:
+          type: object
+          additionalProperties: true
+          description: Custom data echoed back in the completion webhook payload.
+    VideoGenerationJob:
+      type: object
+      description: Status of a submitted video-generation job.
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+          description: Current job status.
+        jobId:
+          type: string
     VideoCreative:
       type: object
       description: The video timeline definition.
@@ -117,24 +158,6 @@ components:
           description: Ordered scenes that make up the video.
           items:
             $ref: '#/components/schemas/Scene'
-    VideoGenerationJobRequest:
-      type: object
-      description: Descriptor for a video-generation job. The videoCreative object models the video timeline as scenes containing tracks (actor, video, image, audio, text). Field set below reflects documented fields; the full schema is not published.
-      properties:
-        videoCreative:
-          $ref: '#/components/schemas/VideoCreative'
-        dynamicVariables:
-          type: object
-          additionalProperties: true
-          description: Template variable substitutions applied during rendering.
-        callback:
-          type: string
-          format: uri
-          description: Webhook URL notified when the job completes.
-        callbackPayload:
-          type: object
-          additionalProperties: true
-          description: Custom data echoed back in the completion webhook payload.
     Track:
       type: object
       description: A track within a scene. The track type determines which fields apply (actor, video, image, audio, text).
@@ -157,36 +180,13 @@ components:
         speakerId:
           type: string
           description: Voice identifier used for narration.
-    VideoGenerationJob:
+    Scene:
       type: object
-      description: Status of a submitted video-generation job.
       properties:
-        id:
-          type: string
-        status:
-          type: string
-          description: Current job status.
-        jobId:
-          type: string
-    TemplateVideoGenerationJobRequest:
-      type: object
-      description: Request to generate a video from an existing template.
-      properties:
-        templateId:
-          type: string
-          description: Identifier of the Colossyan template to render.
-        dynamicVariables:
-          type: object
-          additionalProperties: true
-          description: Values that populate the template's placeholders.
-        callback:
-          type: string
-          format: uri
-          description: Webhook URL notified when the job completes.
-        callbackPayload:
-          type: object
-          additionalProperties: true
-          description: Custom data echoed back in the completion webhook payload.
+        tracks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Track'
   parameters:
     VideoGenerationJobId:
       name: videoGenerationJobId

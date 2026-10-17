@@ -55,6 +55,24 @@ paths:
                 $ref: '#/components/schemas/Avatar'
 components:
   schemas:
+    CreateAvatarRequest:
+      type: object
+      description: Request to create a custom Instant avatar.
+      required:
+      - sourceFileUrl
+      properties:
+        displayName:
+          type: string
+          description: Display name for the avatar.
+        sourceFileUrl:
+          type: string
+          format: uri
+          description: Image or video URL used to generate the avatar.
+        gender:
+          type: string
+          enum:
+          - Male
+          - Female
     Avatar:
       type: object
       description: An avatar/presenter available for video generation.
@@ -71,24 +89,6 @@ components:
           - Studio
           - Scenario
           - Instant
-        gender:
-          type: string
-          enum:
-          - Male
-          - Female
-    CreateAvatarRequest:
-      type: object
-      description: Request to create a custom Instant avatar.
-      required:
-      - sourceFileUrl
-      properties:
-        displayName:
-          type: string
-          description: Display name for the avatar.
-        sourceFileUrl:
-          type: string
-          format: uri
-          description: Image or video URL used to generate the avatar.
         gender:
           type: string
           enum:
