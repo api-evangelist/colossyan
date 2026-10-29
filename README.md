@@ -1,4 +1,4 @@
-# Colossyan (colossyan)
+# Colossyan
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,135 +66,126 @@
 
 Colossyan is an AI avatar and video generation platform for learning and development. Its REST API turns scripts into studio-quality videos with AI avatars and voices, lists avatars/presenters, voices and templates, supports instant avatar and voice clone creation, and exposes asynchronous video-generation jobs with webhook callbacks. API access requires a Business or Enterprise plan.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/colossyan/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/colossyan/refs/heads/main/apis.yml)
+**Areas:** Artificial Intelligence · Video Generation · Avatars · Learning and Development
 
-## Tags
+## Colossyan on APIs.io
 
-- AI
-- Video Generation
-- Avatars
-- Text to Video
-- Learning and Development
+Everything profiled for Colossyan is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/colossyan/](https://apis.io/providers/colossyan/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (5)
 
-- **Created:** 2026-06-21
-- **Modified:** 2026-06-21
+- [Colossyan Avatars API](https://apis.io/apis/colossyan/colossyan-avatars-api/) — List avatars/presenters and create custom Instant avatars.
+- [Colossyan Experimental API](https://apis.io/apis/colossyan/colossyan-experimental-api/) — Non-versioned, experimental endpoints subject to change.
+- [Colossyan Generated Videos API](https://apis.io/apis/colossyan/colossyan-generated-videos-api/) — Retrieve and delete completed videos.
+- [Colossyan Video Generation API](https://apis.io/apis/colossyan/colossyan-video-generation-api/) — Create and manage asynchronous video-generation jobs.
+- [Colossyan Voices API](https://apis.io/apis/colossyan/colossyan-voices-api/) — List available AI voices.
 
-## APIs
+### Published properties
 
-### Colossyan Video Generation API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Creates videos from a script + avatar + voice by submitting an asynchronous video-generation job, with template-based generation, dynamic variable substitution, and retrieval/deletion of generated videos.
+#### Agentic access (1)
 
-- **Human URL:** [https://docs.colossyan.com/basics/video-generation](https://docs.colossyan.com/basics/video-generation)
-- **Base URL:** `https://app.colossyan.com/api/v1`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Colossyan Agentic Access](https://apis.io/agentic-access/colossyan/colossyan-agentic-access/)
 
-- Video Generation
-- Text to Video
-- Async
+#### Collections (6)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://docs.colossyan.com/basics/video-generation)
-- [API Reference](https://docs.colossyan.com/)
-- [OpenAPI](openapi/colossyan-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/colossyan.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/colossyan.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Colossyan API](https://apis.io/collections/colossyan/open-colossyan/)
+- [Colossyan Avatars API](https://apis.io/collections/colossyan/open-colossyan-avatars-api/)
+- [Colossyan Avatars Experimental API](https://apis.io/collections/colossyan/open-colossyan-experimental-api/)
+- [Colossyan Avatars Generated Videos API](https://apis.io/collections/colossyan/open-colossyan-generated-videos-api/)
+- [Colossyan Avatars Video Generation API](https://apis.io/collections/colossyan/open-colossyan-video-generation-api/)
+- [Colossyan Avatars Voices API](https://apis.io/collections/colossyan/open-colossyan-voices-api/)
 
-### Colossyan Avatars / Presenters API
+#### Security (3)
 
-Lists available avatars/presenters (Studio, Scenario, and Instant types) and creates custom Instant avatars from a source image or video URL.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://docs.colossyan.com/avatar-creation/create-avatar](https://docs.colossyan.com/avatar-creation/create-avatar)
-- **Base URL:** `https://app.colossyan.com/api/v1`
+- [Colossyan Authentication](https://apis.io/security/colossyan/colossyan-authentication/)
+- [Colossyan Domain Security](https://apis.io/security/colossyan/colossyan-domain-security/)
+- [Colossyan Trust Center](https://apis.io/security/colossyan/colossyan-trust-center/)
 
-#### Tags
+#### Plans and pricing (1)
 
-- Avatars
-- Presenters
-- Instant Avatar
+Published plans, tiers and prices.
 
-#### Properties
+- [Colossyan Plans Pricing](https://apis.io/plans/colossyan/colossyan-plans-pricing/)
 
-- [Documentation](https://docs.colossyan.com/avatar-creation/create-avatar)
-- [API Reference](https://docs.colossyan.com/basics/openapi/list-avatars)
-- [OpenAPI](openapi/colossyan-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/colossyan.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/colossyan.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Rate limits (1)
 
-### Colossyan Voices API
+Published request limits.
 
-Lists the AI voices available for narration across the platform's supported languages, identified by a speaker ID used in video generation.
+- [Colossyan Rate Limits](https://apis.io/rate-limits/colossyan/colossyan-rate-limits/)
 
-- **Human URL:** [https://docs.colossyan.com/](https://docs.colossyan.com/)
-- **Base URL:** `https://app.colossyan.com/api/v1`
+#### FinOps (1)
 
-#### Tags
+What the API costs to run, by operation.
 
-- Voices
-- Text to Speech
-- Languages
+- [Colossyan Finops](https://apis.io/finops/colossyan/colossyan-finops/)
 
-#### Properties
+## Where to find this API
 
-- [Documentation](https://docs.colossyan.com/)
-- [OpenAPI](openapi/colossyan-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/colossyan.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/colossyan.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-### Colossyan Templates API
-
-Generates videos from reusable Colossyan templates, supplying dynamic variables to populate text, avatars, and media placeholders.
-
-- **Human URL:** [https://docs.colossyan.com/basics/video-generation](https://docs.colossyan.com/basics/video-generation)
-- **Base URL:** `https://app.colossyan.com/api/v1`
-
-#### Tags
-
-- Templates
-- Video Generation
-
-#### Properties
-
-- [Documentation](https://docs.colossyan.com/basics/video-generation)
-- [OpenAPI](openapi/colossyan-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/colossyan.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/colossyan.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Colossyan Job Status / Webhooks API
-
-Retrieves and cancels video-generation jobs and delivers completion notifications to a caller-supplied callback (webhook) URL with the public video URL, status, and custom callback payload.
-
-- **Human URL:** [https://docs.colossyan.com/basics/video-generation](https://docs.colossyan.com/basics/video-generation)
-- **Base URL:** `https://app.colossyan.com/api/v1`
-
-#### Tags
-
-- Job Status
-- Webhooks
-- Callbacks
-
-#### Properties
-
-- [Documentation](https://docs.colossyan.com/basics/video-generation)
-- [OpenAPI](openapi/colossyan-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/colossyan.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/colossyan.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/colossyan)
-- [LinkedIn](https://www.linkedin.com/company/colossyan)
 - [Website](https://www.colossyan.com)
 - [Documentation](https://docs.colossyan.com)
-- [Plans](plans/colossyan-plans-pricing.yml)
-- [Rate Limits](rate-limits/colossyan-rate-limits.yml)
-- [Fin Ops](finops/colossyan-finops.yml)
+- [Pricing](https://www.colossyan.com/pricing/)
+- [Blog](https://www.colossyan.com/blog)
+- [GitHub](https://github.com/colossyan)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 34.5** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 57.1 |
+| Contract quality | 48.1 |
+| Contract governance | 0.0 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 32.1 |
+| Access clarity | 50.0 |
+
+**Agent readiness 19.6** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 15.5** — AI & Biometrics
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/colossyan/](https://apis.io/providers/colossyan/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Colossyan: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/colossyan/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
